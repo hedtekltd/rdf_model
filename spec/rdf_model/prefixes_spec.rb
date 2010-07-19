@@ -49,6 +49,12 @@ describe RdfModel::Prefixes do
     @c.prefix.should include({rdfs: "http://www.w3.org/2000/01/rdf-schema#"})
   end
 
+  it "should automatically include vocabularies as prefixes if vocabularies are present" do
+    b = mock(RdfModel::Vocabularies::Vocabulary, :uri => "http://test.host/vocab")
+    @c.stub!(:vocabulary).and_return({:test => b})
+    @c.prefix.should include({:vocab_test => "http://test.host/vocab"})
+  end
+
   context "prefix subclasses" do
     before(:each) do
       @sub_c = test_subclass(@c)

@@ -17,7 +17,13 @@ module ::RdfModel::Prefixes
       if prefixes
         @prefixes.merge! prefixes
       end
-      @prefixes.merge(superclass.respond_to?(:prefix) ? superclass.prefix : GLOBAL_PREFIXES) 
+      vocab_prefixes = {}
+      if respond_to?(:vocabulary)
+        vocabulary.each do |name, vocab|
+          vocab_prefixes[:"vocab_#{name}"] = vocab.uri
+        end
+      end
+      @prefixes.merge(superclass.respond_to?(:prefix) ? superclass.prefix : GLOBAL_PREFIXES).merge(vocab_prefixes) 
     end
 
     def sparql_with_prefixing(query)
