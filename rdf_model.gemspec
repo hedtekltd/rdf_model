@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   s.files = [
     ".document",
      ".gitignore",
+     "Gemfile",
      "LICENSE",
      "README.rdoc",
      "Rakefile",
@@ -27,7 +28,11 @@ Gem::Specification.new do |s|
      "features/step_definitions/rdf_model_steps.rb",
      "features/support/env.rb",
      "lib/rdf_model.rb",
-     "spec/rdf_model_spec.rb",
+     "lib/rdf_model/prefixes.rb",
+     "lib/rdf_model/vocabularies.rb",
+     "rdf_model.gemspec",
+     "spec/rdf_model/prefixes_spec.rb",
+     "spec/rdf_model/vocabularies_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb"
   ]
@@ -38,7 +43,7 @@ Gem::Specification.new do |s|
   s.summary = %q{Object RDF Mapper for Rails 3}
   s.test_files = [
     "spec/rdf_model/prefixes_spec.rb",
-     "spec/rdf_model_spec.rb",
+     "spec/rdf_model/vocabularies_spec.rb",
      "spec/spec_helper.rb"
   ]
 
