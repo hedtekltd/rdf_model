@@ -37,12 +37,27 @@ describe RdfModel::Prefixes do
 
   it "should automatically apply prefixes to sparql queries" do
     @c.prefix :test => "http://test.host/"
-    @c.sparql("SELECT * WHERE { http://test.host/1 ?p ?o }").should == "PREFIX test: <http://test.host/> SELECT * WHERE { test:1 ?p ?o }"
+    @c.sparql("SELECT * WHERE { http://test.host/1 ?p ?o }").should =~ /PREFIX test: <http:\/\/test.host\/> .* SELECT \* WHERE { test:1 \?p \?o }/
+  end
+
+  it "should automatically apply global prefixes to sparql queries" do
+    @c.sparql("SELECT * WHERE { http://www.w3.org/1999/02/22-rdf-syntax-ns#test ?p ?o }").should =~ /SELECT \* WHERE { rdf:test \?p \?o }/
+  end
+
+  it "should automatically include the global prefixes for RDF" do
+    @c.prefix.should include({:rdf => "http://www.w3.org/1999/02/22-rdf-syntax-ns#"})
+    @c.prefix.should include({rdfs: "http://www.w3.org/2000/01/rdf-schema#"})
   end
 
   context "prefix subclasses" do
     before(:each) do
       @sub_c = test_subclass(@c)
+    end
+
+    it "should apply inherited prefixes to sparql queries" do
+      @c.prefix :test => "http://test.host/"
+      @sub_c.prefix :test2 => "http://test2.host/"
+      @sub_c.sparql("SELECT * WHERE { http://test.host/1 http://test2.host/2 ?o }").should =~ /SELECT \* WHERE { test:1 test2:2 \?o }/
     end
 
     it "should inherit prefixes to subclasses" do

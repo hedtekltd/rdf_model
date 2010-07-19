@@ -1,4 +1,8 @@
 module RdfModel::Prefixes
+  GLOBAL_PREFIXES = {
+          :rdf => "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+          :rdfs => "http://www.w3.org/2000/01/rdf-schema#"
+  }
   def self.included(base)
     base.extend ClassMethods
     class << base
@@ -13,7 +17,7 @@ module RdfModel::Prefixes
       if prefixes
         @prefixes.merge! prefixes
       end
-      @prefixes.merge(superclass.respond_to?(:prefix) ? superclass.prefix : {}) 
+      @prefixes.merge(superclass.respond_to?(:prefix) ? superclass.prefix : GLOBAL_PREFIXES) 
     end
 
     def sparql_with_prefixing(query)
@@ -23,11 +27,11 @@ module RdfModel::Prefixes
     private
 
     def generate_prefixes
-      @prefixes.map {|name, uri| "PREFIX #{name}: <#{uri}>"}.join(' ')
+      prefix.map {|name, uri| "PREFIX #{name}: <#{uri}>"}.join(' ')
     end
 
     def escape_uris(query)
-      @prefixes.inject(query) {|query, prefix| query.gsub(/#{prefix[1]}/, "#{prefix[0]}:")}
+      prefix.inject(query) {|q, prefix| q.gsub(/#{prefix[1]}/, "#{prefix[0]}:")}
     end
   end
 end
