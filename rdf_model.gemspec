@@ -42,7 +42,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{Object RDF Mapper for Rails 3}
   s.test_files = [
-    "spec/rdf_model/prefixes_spec.rb",
+    "spec/rdf_model/attributes_spec.rb",
+     "spec/rdf_model/prefixes_spec.rb",
      "spec/rdf_model/vocabularies_spec.rb",
      "spec/spec_helper.rb"
   ]
@@ -52,15 +53,18 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_development_dependency(%q<rspec>, [">= 1.2.9"])
-      s.add_development_dependency(%q<cucumber>, [">= 0"])
+      s.add_development_dependency(%q<rspec>, ["~> 1.3.0"])
+      s.add_development_dependency(%q<cucumber>, ["~> 0.8.4"])
+      s.add_runtime_dependency(%q<activemodel>, ["~> 3.0.0.beta4"])
     else
-      s.add_dependency(%q<rspec>, [">= 1.2.9"])
-      s.add_dependency(%q<cucumber>, [">= 0"])
+      s.add_dependency(%q<rspec>, ["~> 1.3.0"])
+      s.add_dependency(%q<cucumber>, ["~> 0.8.4"])
+      s.add_dependency(%q<activemodel>, ["~> 3.0.0.beta4"])
     end
   else
-    s.add_dependency(%q<rspec>, [">= 1.2.9"])
-    s.add_dependency(%q<cucumber>, [">= 0"])
+    s.add_dependency(%q<rspec>, ["~> 1.3.0"])
+    s.add_dependency(%q<cucumber>, ["~> 0.8.4"])
+    s.add_dependency(%q<activemodel>, ["~> 3.0.0.beta4"])
   end
 end
 
