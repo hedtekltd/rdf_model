@@ -6,6 +6,9 @@ describe RdfModel::Prefixes do
       def self.sparql(query)
         query
       end
+      def escape_attribute_name (name)
+        name
+      end
       include RdfModel::Prefixes
     end
   end
@@ -53,6 +56,11 @@ describe RdfModel::Prefixes do
     b = mock(RdfModel::Vocabularies::Vocabulary, :uri => "http://test.host/vocab")
     @c.stub!(:vocabulary).and_return({:test => b})
     @c.prefix.should include({:vocab_test => "http://test.host/vocab"})
+  end
+
+  it "should rewrite attribute names for prefixes using 'escape_name'" do
+    @c.prefix :test => "http://test.host/"
+    @c.new.escape_attribute_name("http://test.host/SPECIES").should == "test_SPECIES"
   end
 
   context "prefix subclasses" do

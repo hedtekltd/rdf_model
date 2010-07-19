@@ -28,9 +28,13 @@ Gem::Specification.new do |s|
      "features/step_definitions/rdf_model_steps.rb",
      "features/support/env.rb",
      "lib/rdf_model.rb",
+     "lib/rdf_model/associations.rb",
+     "lib/rdf_model/attributes.rb",
      "lib/rdf_model/prefixes.rb",
      "lib/rdf_model/vocabularies.rb",
      "rdf_model.gemspec",
+     "spec/rdf_model/associations_spec.rb",
+     "spec/rdf_model/attributes_spec.rb",
      "spec/rdf_model/prefixes_spec.rb",
      "spec/rdf_model/vocabularies_spec.rb",
      "spec/spec.opts",
@@ -42,7 +46,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{Object RDF Mapper for Rails 3}
   s.test_files = [
-    "spec/rdf_model/attributes_spec.rb",
+    "spec/rdf_model/associations_spec.rb",
+     "spec/rdf_model/attributes_spec.rb",
      "spec/rdf_model/prefixes_spec.rb",
      "spec/rdf_model/vocabularies_spec.rb",
      "spec/spec_helper.rb"

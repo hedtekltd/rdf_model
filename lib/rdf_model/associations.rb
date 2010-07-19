@@ -1,0 +1,3 @@
+module RdfModel::Associations
+  
+end
