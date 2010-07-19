@@ -11,6 +11,6 @@ describe RdfModel::Associations do
     c = test_class
     c2 = test_class
     c.linked_to c2, :with => "http://test.host/vocab/TEST"
-    c.linked_to.should include(c2)
+    c.linked_to.should include({"http://test.host/vocab/TEST" => c2})
   end
 end
