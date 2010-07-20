@@ -28,7 +28,7 @@ describe RdfModel::Sparql do
   it "should create an object when using find_by_uri" do
     c = test_class
     @store.should_receive(:select).with("SELECT ?p ?o WHERE { http://test.host/ ?p ?o }").and_return({"p" => "blah", "o" => "test"})
-    c.should_receive(:new).with({"p" => "blah", "o" => "test"}).and_return(mock(c))
+    c.should_receive(:new).with("http://test.host/", {"p" => "blah", "o" => "test"}).and_return(mock(c))
     c.find_by_uri("http://test.host/")
   end
 
@@ -42,7 +42,7 @@ describe RdfModel::Sparql do
     c = test_class
     @store.should_receive(:select).with("SELECT ?p ?o WHERE { species:1 ?p ?o }").and_return({"p" => "blah", "o" => "test"})
     c.id_prefix "species"
-    c.should_receive(:new).with({"p" => "blah", "o" => "test"}).and_return(mock(c))
+    c.should_receive(:new).with("species:1", {"p" => "blah", "o" => "test"}).and_return(mock(c))
     c.find_by_id(1)
   end
 end

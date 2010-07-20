@@ -13,7 +13,7 @@ module ::RdfModel::Sparql
     end
 
     def find_by_uri(uri)
-      self.new(self.find_by_sparql("SELECT ?p ?o WHERE { #{uri} ?p ?o }"))
+      self.new(uri, self.find_by_sparql("SELECT ?p ?o WHERE { #{uri} ?p ?o }"))
     end
 
     def find_by_id(id)
