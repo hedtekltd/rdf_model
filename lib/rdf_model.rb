@@ -1,3 +1,4 @@
+require 'rails/rdf_model' if defined?(Rails)
 require 'rdf_model/configuration'
 require 'rdf_model/connection'
 
