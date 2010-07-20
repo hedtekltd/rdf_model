@@ -57,6 +57,14 @@ describe RdfModel::Associations do
     c.linked_from.should include("http://test.host/vocab/TEST" => c2)
   end
 
+  it "should inherit inverse model links" do
+    c = test_class
+    c2 = Class.new(c)
+    c3 = test_class
+    c.linked_from c3, :with => "http://test.host/vocab/TEST", :as => 'test'
+    c2.linked_from.should include("http://test.host/vocab/TEST" => c3)
+  end
+
   it "should create a method to access the inverse link" do
     c = test_class
     c2 = test_class

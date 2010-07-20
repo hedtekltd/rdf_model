@@ -13,7 +13,6 @@ begin
     gem.add_development_dependency "rspec", "~> 1.3.0"
     gem.add_development_dependency "cucumber", "~> 0.8.4"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
-    gem.add_dependency "activemodel", "~> 3.0.0.beta4"
   end
 rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"

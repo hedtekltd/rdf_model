@@ -34,7 +34,7 @@ module RdfModel::Associations
         @inverse_linked_models[options[:with]] = model
         define_method(options[:as]) {}
       end
-      return @inverse_linked_models
+      return @inverse_linked_models.merge(superclass.respond_to?(:linked_from) ? superclass.linked_from : {})
     end
   end
 end
