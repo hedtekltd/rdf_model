@@ -1,12 +1,11 @@
-require '4store-ruby'
-
 module ::RdfModel::Sparql
   def self.included(base)
     base.extend(ClassMethods)
-    base.connection = ::FourStore::Store.new(::RdfModel::TRIPLESTORE_CONFIG['sparql-uri'])
   end
 
   module ClassMethods
-    attr_accessor :connection
+    def connection
+      ::RdfModel::TRIPLESTORE_CONFIG['connection-pool'].connection
+    end
   end
 end

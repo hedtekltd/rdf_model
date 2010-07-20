@@ -1,4 +1,5 @@
 require 'rdf_model/configuration'
+require 'rdf_model/connection'
 
 require 'rdf_model/sparql'
 require 'rdf_model/associations'

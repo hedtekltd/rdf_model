@@ -1,0 +1,1 @@
+require 'rdf_model/connection/pool'
