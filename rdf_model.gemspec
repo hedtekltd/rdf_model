@@ -49,6 +49,7 @@ Gem::Specification.new do |s|
     "spec/rdf_model/associations_spec.rb",
      "spec/rdf_model/attributes_spec.rb",
      "spec/rdf_model/prefixes_spec.rb",
+     "spec/rdf_model/sparql_spec.rb",
      "spec/rdf_model/vocabularies_spec.rb",
      "spec/spec_helper.rb"
   ]
