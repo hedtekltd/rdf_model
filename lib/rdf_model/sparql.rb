@@ -20,6 +20,11 @@ module ::RdfModel::Sparql
       find_by_uri("#{id_prefix}:#{id}")
     end
 
+    def find_by_predicate(predicate, uri)
+      uris = find_by_sparql("SELECT ?uri WHERE { ?uri #{predicate} #{uri} }")
+      uris.map{|u| find_by_uri(u["uri"])}
+    end
+
     def id_prefix(prefix = nil)
       @id_prefix = prefix if prefix
       return @id_prefix

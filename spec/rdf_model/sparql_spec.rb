@@ -45,4 +45,14 @@ describe RdfModel::Sparql do
     c.should_receive(:new).with("species:1", {"p" => "blah", "o" => "test"}).and_return(mock(c))
     c.find_by_id(1)
   end
+
+  it "should allow you to find an array of models using a predicate matcher" do
+    c = test_class
+    @store.should_receive(:select).with("SELECT ?uri WHERE { ?uri testing testing }").and_return([{"uri" => "test1"}, {"uri" => "test2"}])
+    @store.should_receive(:select).with("SELECT ?p ?o WHERE { test1 ?p ?o }").and_return({"p" => "blah", "o" => "test"})
+    @store.should_receive(:select).with("SELECT ?p ?o WHERE { test2 ?p ?o }").and_return({"p" => "blah", "o" => "test2"})
+    c.should_receive(:new).with("test1", {"p" => "blah", "o" => "test"}).and_return(ci1 = mock(c))
+    c.should_receive(:new).with("test2", {"p" => "blah", "o" => "test2"}).and_return(ci2 = mock(c))
+    c.find_by_predicate("testing", "testing").should == [ci1, ci2]
+  end
 end
