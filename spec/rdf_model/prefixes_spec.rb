@@ -3,7 +3,7 @@ require 'spec_helper'
 describe RdfModel::Prefixes do
   def test_class()
     Class.new() do
-      def self.sparql(query)
+      def self.find_by_sparql(query)
         query
       end
       def escape_attribute_name (name)
@@ -40,11 +40,11 @@ describe RdfModel::Prefixes do
 
   it "should automatically apply prefixes to sparql queries" do
     @c.prefix :test => "http://test.host/"
-    @c.sparql("SELECT * WHERE { http://test.host/1 ?p ?o }").should =~ /PREFIX test: <http:\/\/test.host\/> .* SELECT \* WHERE { test:1 \?p \?o }/
+    @c.find_by_sparql("SELECT * WHERE { http://test.host/1 ?p ?o }").should =~ /PREFIX test: <http:\/\/test.host\/> .* SELECT \* WHERE { test:1 \?p \?o }/
   end
 
   it "should automatically apply global prefixes to sparql queries" do
-    @c.sparql("SELECT * WHERE { http://www.w3.org/1999/02/22-rdf-syntax-ns#test ?p ?o }").should =~ /SELECT \* WHERE { rdf:test \?p \?o }/
+    @c.find_by_sparql("SELECT * WHERE { http://www.w3.org/1999/02/22-rdf-syntax-ns#test ?p ?o }").should =~ /SELECT \* WHERE { rdf:test \?p \?o }/
   end
 
   it "should automatically include the global prefixes for RDF" do
@@ -71,7 +71,7 @@ describe RdfModel::Prefixes do
     it "should apply inherited prefixes to sparql queries" do
       @c.prefix :test => "http://test.host/"
       @sub_c.prefix :test2 => "http://test2.host/"
-      @sub_c.sparql("SELECT * WHERE { http://test.host/1 http://test2.host/2 ?o }").should =~ /SELECT \* WHERE { test:1 test2:2 \?o }/
+      @sub_c.find_by_sparql("SELECT * WHERE { http://test.host/1 http://test2.host/2 ?o }").should =~ /SELECT \* WHERE { test:1 test2:2 \?o }/
     end
 
     it "should inherit prefixes to subclasses" do

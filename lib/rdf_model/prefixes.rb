@@ -7,8 +7,8 @@ module ::RdfModel::Prefixes
   def self.included(base)
     base.extend ClassMethods
     class << base
-      alias :sparql_without_prefixing :sparql
-      alias :sparql :sparql_with_prefixing
+      alias :sparql_without_prefixing :find_by_sparql
+      alias :find_by_sparql :sparql_with_prefixing
     end
 
     base.class_eval do
