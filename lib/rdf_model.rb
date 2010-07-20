@@ -1,6 +1,4 @@
-module ::RdfModel
-
-end
+require 'rdf_model/configuration'
 
 require 'rdf_model/sparql'
 require 'rdf_model/associations'

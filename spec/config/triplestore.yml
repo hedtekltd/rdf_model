@@ -1,0 +1,3 @@
+test:
+  adapter: "4store"
+  sparql-uri: "test-uri"
