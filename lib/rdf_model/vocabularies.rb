@@ -15,15 +15,23 @@ module ::RdfModel::Vocabularies
     end
 
     def method_missing(method, *args, &block)
-      return get_vocabulary($1) if method.to_s =~ /^vocab_(.+)$/
+      return get_vocabulary(vocabulary_name(method)) if is_vocabulary?(method)
       super(method, *args, &block)
     end
 
     def respond_to?(name)
-      return name.to_s =~ /^vocab_(.+)$/ ? has_vocabulary($1) || super(name) : super(name)
+      return is_vocabulary?(name) || super(name)
     end
 
     private
+
+    def is_vocabulary?(name)
+      (v = vocabulary_name(name)) && has_vocabulary(v)
+    end
+
+    def vocabulary_name(full_name)
+      (full_name.to_s =~ /^vocab_(.+)$/) && $1
+    end
 
     def get_vocabulary(vocab_name)
       vocabulary[vocab_name.to_sym]
