@@ -8,13 +8,13 @@ module RdfModel::Attributes
     end
   end
 
-  def initialize_with_attributes(rdf_attributes)
+  def initialize_with_attributes(uri, rdf_attributes)
     self.attributes = {}
     rdf_attributes.each do |attr_pair|
       self.attributes[attr_pair['p']] = attr_pair['o']
     end
     define_attribute_methods
-    initialize_without_attributes
+    initialize_without_attributes(uri, rdf_attributes)
   end
 
   def define_attribute_methods
