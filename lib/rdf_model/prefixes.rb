@@ -3,14 +3,14 @@ module ::RdfModel::Prefixes
           :rdf => "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
           :rdfs => "http://www.w3.org/2000/01/rdf-schema#"
   }
-  
+
   def self.included(base)
     base.extend ClassMethods
     class << base
       alias :sparql_without_prefixing :sparql
       alias :sparql :sparql_with_prefixing
     end
-    
+
     base.class_eval do
       #hooks into the attribute name escaping
       alias :escape_attribute_name_without_prefixing :escape_attribute_name
