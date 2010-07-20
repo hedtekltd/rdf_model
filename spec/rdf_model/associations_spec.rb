@@ -3,6 +3,10 @@ require 'spec_helper'
 describe RdfModel::Associations do
   def test_class
     Class.new do
+      def uri
+        "http://test.host/TESTING/1"
+      end
+      
       def process_attribute_value(name, value)
         value
       end
@@ -70,5 +74,13 @@ describe RdfModel::Associations do
     c2 = test_class
     c.linked_from c2, :with => "http://test.host/vocab/TEST", :as => 'test'
     c.new.respond_to?(:test).should be_true
+  end
+
+  it "should create an object from a predicate and object URI for an inverse link" do
+    c1 = test_class
+    c2 = test_class
+    c1.linked_from c2, :with => "http://test.host/vocab/TEST", :as => 'test'
+    c2.should_receive(:find_by_predicate).with("http://test.host/vocab/TEST", "http://test.host/TESTING/1")
+    c1.new.test
   end
 end
