@@ -27,7 +27,7 @@ describe RdfModel::Associations do
     c2 = test_class
     c.linked_to c2, :with => "http://test.host/vocab/TEST"
     c2.should_receive(:find_by_uri).with("http://test.host/TESTING/1")
-    c.new.process_attribute_value("http://test.host/vocab/TEST", "http://test.host/TESTING/1")
+    c.new.process_attribute_value("http://test.host/vocab/TEST", ["http://test.host/TESTING/1"])
   end
 
   it "should inherit linked models from parents" do
@@ -40,7 +40,7 @@ describe RdfModel::Associations do
 
   it "should not interfere with a non-linked attribute request" do
     c = test_class
-    c.new.process_attribute_value("http://test.host/vocab/TEST", "http://test.host/TESTING/1").should == "http://test.host/TESTING/1" 
+    c.new.process_attribute_value("http://test.host/vocab/TEST", ["http://test.host/TESTING/1"]).should == ["http://test.host/TESTING/1"]
   end
 
   it "should only create the linked model once" do
@@ -49,8 +49,8 @@ describe RdfModel::Associations do
     c.linked_to c2, :with => "http://test.host/vocab/TEST"
     c2.should_receive(:find_by_uri).once().with("http://test.host/TESTING/1").and_return(mock(c2))
     cinst = c.new
-    r1 = cinst.process_attribute_value("http://test.host/vocab/TEST", "http://test.host/TESTING/1")
-    r2 = cinst.process_attribute_value("http://test.host/vocab/TEST", "http://test.host/TESTING/1")
+    r1 = cinst.process_attribute_value("http://test.host/vocab/TEST", ["http://test.host/TESTING/1"])
+    r2 = cinst.process_attribute_value("http://test.host/vocab/TEST", ["http://test.host/TESTING/1"])
     r1.should == r2
   end
 

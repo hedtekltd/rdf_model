@@ -10,7 +10,7 @@ module RdfModel::Associations
   def process_attribute_value_with_associations(name, value)
     if linked_model = self.class.linked_to[name]
       @linked_model_instances ||= {}
-      @linked_model_instances[name] = linked_model.find_by_uri(value) unless @linked_model_instances[name]
+      @linked_model_instances[name] = linked_model.find_by_uri(value[0]) unless @linked_model_instances[name]
       return @linked_model_instances[name]
     end
     process_attribute_value_without_associations(name, value)
