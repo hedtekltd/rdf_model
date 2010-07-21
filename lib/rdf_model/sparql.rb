@@ -9,6 +9,7 @@ module ::RdfModel::Sparql
     end
 
     def find_by_sparql(query)
+      ::RdfModel::LOGGER.info(query)
       connection.select(query)
     end
 

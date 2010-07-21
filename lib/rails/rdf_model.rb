@@ -4,6 +4,7 @@ module ::RdfModel
   class Railtie < ::Rails::Railtie
     initializer "rdf_model.load_config" do |app|
       ::RdfModel::TRIPLESTORE_CONFIG.load_rails_config_file(File.join(Rails.root, "config", "triplestore.yml"), Rails.env)
+      ::RdfModel::LOGGER.logger = Rails.logger
     end
   end
 end

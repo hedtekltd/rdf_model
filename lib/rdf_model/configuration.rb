@@ -16,5 +16,24 @@ module ::RdfModel
     end
   end
 
+  class LoggerWrapper
+    attr_accessor :logger
+
+    def initialize(logger)
+      self.logger = logger
+    end
+
+    def method_missing(method, *args, &block)
+      self.logger.send(method, *args, &block)
+    end
+  end
+
+  class NullLogger
+    def method_missing(method, *args, &block)
+      #Swallow all calls
+    end
+  end
+
   TRIPLESTORE_CONFIG = Configuration.new
+  LOGGER = LoggerWrapper.new(NullLogger.new)
 end
