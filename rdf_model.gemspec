@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["David Workman"]
-  s.date = %q{2010-07-20}
+  s.date = %q{2010-07-21}
   s.description = %q{An ORM for rails3 that allows the easy integration of rdf triplestores}
   s.email = %q{workmad3@gmail.com}
   s.extra_rdoc_files = [
@@ -31,20 +31,24 @@ Gem::Specification.new do |s|
      "lib/rdf_model.rb",
      "lib/rdf_model/associations.rb",
      "lib/rdf_model/attributes.rb",
+     "lib/rdf_model/base.rb",
      "lib/rdf_model/configuration.rb",
      "lib/rdf_model/connection.rb",
      "lib/rdf_model/connection/pool.rb",
      "lib/rdf_model/prefixes.rb",
      "lib/rdf_model/sparql.rb",
+     "lib/rdf_model/types.rb",
      "lib/rdf_model/vocabularies.rb",
      "rdf_model.gemspec",
      "spec/config/triplestore.yml",
      "spec/rdf_model/associations_spec.rb",
      "spec/rdf_model/attributes_spec.rb",
+     "spec/rdf_model/base_spec.rb",
      "spec/rdf_model/configuration_spec.rb",
      "spec/rdf_model/connection/pool_spec.rb",
      "spec/rdf_model/prefixes_spec.rb",
      "spec/rdf_model/sparql_spec.rb",
+     "spec/rdf_model/types_spec.rb",
      "spec/rdf_model/vocabularies_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb"
@@ -57,10 +61,12 @@ Gem::Specification.new do |s|
   s.test_files = [
     "spec/rdf_model/associations_spec.rb",
      "spec/rdf_model/attributes_spec.rb",
+     "spec/rdf_model/base_spec.rb",
      "spec/rdf_model/configuration_spec.rb",
      "spec/rdf_model/connection/pool_spec.rb",
      "spec/rdf_model/prefixes_spec.rb",
      "spec/rdf_model/sparql_spec.rb",
+     "spec/rdf_model/types_spec.rb",
      "spec/rdf_model/vocabularies_spec.rb",
      "spec/spec_helper.rb"
   ]

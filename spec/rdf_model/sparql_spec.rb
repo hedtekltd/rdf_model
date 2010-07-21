@@ -41,7 +41,7 @@ describe RdfModel::Sparql do
   it "should allow you to find by ID" do
     c = test_class
     @store.should_receive(:select).with("SELECT ?p ?o WHERE { species:1 ?p ?o }").and_return({"p" => "blah", "o" => "test"})
-    c.id_prefix "species"
+    c.id_prefix "species:"
     c.should_receive(:new).with("species:1", {"p" => "blah", "o" => "test"}).and_return(mock(c))
     c.find_by_id(1)
   end

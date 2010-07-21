@@ -18,7 +18,7 @@ module ::RdfModel::Sparql
     end
 
     def find_by_id(id)
-      find_by_uri("#{id_prefix}:#{id}")
+      find_by_uri("#{id_prefix}#{id}")
     end
 
     def find_by_predicate(predicate, uri)
