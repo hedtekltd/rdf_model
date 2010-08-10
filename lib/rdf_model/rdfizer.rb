@@ -4,8 +4,8 @@ module RdfModel::Rdfizer
 
   def serialise_attributes(xml)
     self.attributes.each do |k, v|
-      xml.send(escape_uris(k).to_sym) {
-        xml.text(escape_uris(v))
+      xml.send(self.class.escape_uris(k).to_sym) {
+        xml.text(self.class.escape_uris(v))
       }
     end
   end

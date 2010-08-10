@@ -52,14 +52,14 @@ module ::RdfModel::Prefixes
       sparql_without_prefixing([generate_prefixes, escape_uris(query)].join(' '))
     end
 
+    def escape_uris(query)
+      prefix.inject(query) {|q, prefix| q.gsub(/#{prefix[1]}/, "#{prefix[0]}:")}
+    end
+
     private
 
     def generate_prefixes
       prefix.map {|name, uri| "PREFIX #{name}: <#{uri}>"}.join(' ')
-    end
-
-    def escape_uris(query)
-      prefix.inject(query) {|q, prefix| q.gsub(/#{prefix[1]}/, "#{prefix[0]}:")}
     end
   end
 end

@@ -14,7 +14,7 @@ describe RdfModel::Rdfizer do
         {"xmlns:rdf" => "http:\/\/www.w3.org\/1999\/02\/22-rdf-syntax-ns#"}
       end
 
-      def escape_uris(uri)
+      def self.escape_uris(uri)
         uri
       end
 
