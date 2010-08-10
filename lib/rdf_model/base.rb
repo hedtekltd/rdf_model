@@ -10,4 +10,5 @@ class ::RdfModel::Base
   include ::RdfModel::Vocabularies
   include ::RdfModel::Associations
   include ::RdfModel::Types
+  include ::RdfModel::Rdfizer
 end

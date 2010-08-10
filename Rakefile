@@ -12,6 +12,7 @@ begin
     gem.authors = ["David Workman"]
     gem.add_development_dependency "rspec", "~> 1.3.0"
     gem.add_development_dependency "cucumber", "~> 0.8.4"
+    gem.add_runtime_dependency "nokogiri", "~> 1.4.3.1"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 rescue LoadError

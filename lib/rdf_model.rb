@@ -12,6 +12,7 @@ require 'rdf_model/attributes'
 require 'rdf_model/prefixes'
 require 'rdf_model/types'
 require 'rdf_model/vocabularies'
+require 'rdf_model/rdfizer'
 
 #Load the base class that ties the model together
 require 'rdf_model/base'

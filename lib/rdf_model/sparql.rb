@@ -27,8 +27,7 @@ module ::RdfModel::Sparql
     end
 
     def id_prefix(prefix = nil)
-      @id_prefix = prefix if prefix
-      return @id_prefix
+      @id_prefix = prefix ? prefix : @id_prefix
     end
   end
 end
