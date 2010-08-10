@@ -18,13 +18,19 @@ module ::RdfModel::Prefixes
     end
   end
 
+  def xml_namespaces
+    self.class.prefix.inject({}) do |xml_prefix_hsh, prefix|
+      xml_prefix_hsh.merge({"xmlns:#{prefix[0]}" => prefix[1]})
+    end
+  end
+
   def escape_attribute_name_with_prefixing(name)
     self.class.prefix.each do |prefix_name, uri|
       if name =~ /#{Regexp.escape(uri)}/
         return escape_attribute_name_with_prefixing(name.gsub(uri, "#{prefix_name}_"))
       end
     end
-    return escape_attribute_name_without_prefixing(name)
+    escape_attribute_name_without_prefixing(name)
   end
 
   module ClassMethods

@@ -10,12 +10,16 @@ describe RdfModel::Rdfizer do
         self.attributes = {}
       end
 
+      def xml_namespaces
+        {"xmlns:rdf" => "http:\/\/www.w3.org\/1999\/02\/22-rdf-syntax-ns#"}
+      end
+
+      def escape_uris(uri)
+        uri
+      end
+
       include ::RdfModel::Rdfizer
     end
-  end
-
-  before(:each) do
-    
   end
 
   it "should serialize the class URI to RDF" do

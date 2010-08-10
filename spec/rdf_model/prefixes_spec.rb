@@ -63,6 +63,11 @@ describe RdfModel::Prefixes do
     @c.new.escape_attribute_name("http://test.host/SPECIES").should == "test_SPECIES"
   end
 
+  it "should generate XML namespaces from the prefixes set" do
+    @c.prefix :test => "http://test.host"
+    @c.new.xml_namespaces.should include({"xmlns:test" => "http://test.host"})
+  end
+
   context "prefix subclasses" do
     before(:each) do
       @sub_c = test_subclass(@c)

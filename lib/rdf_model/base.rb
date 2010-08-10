@@ -6,9 +6,9 @@ class ::RdfModel::Base
   
   include ::RdfModel::Attributes
   include ::RdfModel::Sparql
+  include ::RdfModel::Rdfizer
   include ::RdfModel::Prefixes
   include ::RdfModel::Vocabularies
   include ::RdfModel::Associations
   include ::RdfModel::Types
-  include ::RdfModel::Rdfizer
 end
